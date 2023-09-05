@@ -2,7 +2,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@{
+    DateTime date = DateTime.Now;
+    string dDate = date.ToString("dddd");
+}
+
+<div class="text-center d-flex flex-column align-items-center justify-content-center">
+    <h1 class="display-4">Welcome CICS</h1>
+
+    @{
+        if (date.Hour < 12)
+        {
+            <h3>It is <span style="color: #E0CA3C;">morning</span> on @dDate</h3>
+            <img src="~/css/morning_image.jpg" alt="Morning Image" width="1080" height="500" />
+        }
+        else if (date.Hour < 18)
+        {
+            <h3>It is <span style="color: #FF5733;">afternoon</span> on @dDate</h3>
+            <img src="~/css/afternoon_image.jpg" alt="Afternoon Image" width="1080" height="500" />
+        }
+        else
+        {
+            <h3>It is <span style="color: #2D3047;">evening</span> on @dDate</h3>
+            <img src="~/css/evening_image.jpg" alt="Evening Image" width="1080" height="500" />
+        }
+    }
 </div>
