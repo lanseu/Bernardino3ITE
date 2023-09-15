@@ -1,0 +1,45 @@
+﻿
+
+@model IEnumerable<Bernardino3ITE.Models.Act2>
+
+
+<table class="table table-striped">
+
+    <tr>
+        <th colspan="6"><h1>Person List</h1></th>
+    </tr>
+
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Tenured Status</td>
+        <td>Birthday</td>
+        <td>Salary</td>
+        <td>Email</td>
+
+    </tr>
+    @foreach (var Act2 in Model)
+    {
+        <tr>
+            <td>@Act2.FirstName </td>
+            <td>@Act2.LastName</td>
+            <td>
+                @if (@Act2.IsTenured == true)
+                {
+                    <p>Permanent</p>
+                }
+                else
+                {
+                    <p>Probationary</p>
+                }
+            </td>
+            <td>@Act2.Birthday</td>
+            <td>@Act2.Email</td>
+            <td><a asp-action="ShowDetails" asp-route-id="@Act2.Id">Show Details</a></td>
+
+        </tr>
+    }
+
+</table>
+
+

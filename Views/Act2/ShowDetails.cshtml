@@ -1,0 +1,129 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Act2;
+
+<h1>Person Details</h1>
+
+<h3>I'm @Model.FirstName @Model.LastName and I'm @Model.Age years old</h3>
+
+<table class="table table-striped">
+    <tr>
+        <th>First Name</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Tenured Status</th>
+        <td>
+            @if (@Model.IsTenured == true)
+            {
+                <p>Permanent</p>
+            }
+            else
+            {
+                <p>Probationary</p>
+            }
+        </td>
+    </tr>
+</table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            @{
+                string email = Model.Email;
+
+                int atIndex = email.IndexOf('@');
+                if (atIndex != -1)
+                {
+                    string username = email.Substring(0, atIndex);
+                    string domain = email.Substring(atIndex + 1);
+
+                    <p>Email: @email</p>
+                    <p>Username: @username</p>
+                    <p>Domain: @domain</p>
+                }
+            }
+        </div>
+        <div class="col-6">
+            @{
+                if (Model.IsTenured == true)
+                {
+                    int salaryPerDay = Model.SalaryPerHour * 8;
+                    int salaryPerMonth = (salaryPerDay * 30) + 500;
+                    <p>Name: @Model.FirstName @Model.LastName</p>
+                    <p>Email: @Model.Email</p>
+                    <p>Status: Permanent</p>
+                    <p>Daily Salary: $@salaryPerDay</p>
+                    <p>Monthly Salary: $@salaryPerMonth</p>
+                }
+                else
+                {
+                    int salaryPerDay = Model.SalaryPerHour * 8;
+                    int salaryPerMonth = salaryPerDay * 30;
+                    <p>Name: @Model.FirstName @Model.LastName</p>
+                    <p>Email: @Model.Email</p>
+                    <p>Status: Probationary</p>
+                    <p>Daily Salary: $@salaryPerDay</p>
+                    <p>Monthly Salary: $@salaryPerMonth</p>
+                }
+            }
+        </div>
+        <div class="col-6">
+            <p>Name: @Model.FirstName @Model.LastName</p>
+            <p>Email: @Model.Email</p>
+            <p>Prelim Grade: @Model.PrelimGrade</p>
+            <p>Final Grade: @Model.FinalGrade</p>
+            <p>Semestral Grade: @Model.SemGrade</p>
+            @{
+                string transmutedGrade = string.Empty;
+                switch (Model.SemGrade)
+                {
+                    case var grade when grade >= 96:
+                        transmutedGrade = "1.00";
+                        break;
+                    case var grade when grade >= 94:
+                        transmutedGrade = "1.25";
+                        break;
+                    case var grade when grade >= 92:
+                        transmutedGrade = "1.50";
+                        break;
+                    case var grade when grade >= 89:
+                        transmutedGrade = "1.75";
+                        break;
+                    case var grade when grade >= 87:
+                        transmutedGrade = "2.00";
+                        break;
+                    case var grade when grade >= 84:
+                        transmutedGrade = "2.25";
+                        break;
+                    case var grade when grade >= 82:
+                        transmutedGrade = "2.50";
+                        break;
+                    case var grade when grade >= 79:
+                        transmutedGrade = "2.75";
+                        break;
+                    case var grade when grade >= 75:
+                        transmutedGrade = "3.00";
+                        break;
+                    default:
+                        transmutedGrade = "5.00"; 
+                        break;
+                }
+
+                <p>Transmuted Grade: @transmutedGrade</p>
+            }
+        </div>
+    </div>
+</div>
+
+
+
