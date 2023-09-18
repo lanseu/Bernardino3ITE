@@ -1,12 +1,13 @@
 @model IEnumerable<Student>;
+<center><h1>Student List</h1></center>
 
-<div>Student List</div>
+<a href="@Url.Action("AddStudent")" class="btn btn-primary mb-3">Add Student</a>
 
 
-<table class="table table-dark">
+<table class="table table-hover">
 
     <tr>
-        <th colspan="6">Student</th>
+        <th colspan="7">Student</th>
     </tr>
 
     <tr>
@@ -16,19 +17,20 @@
         <td>Email</td>
         <td>GPA</td>
         <td>Details</td>
+        <td></td>
 
 
     </tr>
     @foreach (var student in Model)
     {
-        <tr>
+        <tbody class="table-group-divider">
             <td>@student.FirstName @student.LastName</td>
             <td>@student.Course</td>
             <td>@student.AdmissionDate</td>
             <td>@student.Email</td>
             <td>@student.GPA</td>
-            <td><a asp-action="ShowDetails" asp-route-id="@student.Id">Show Details</a></td>
-
-        </tr>
+            <td><a asp-action="ShowDetails" asp-route-id="@student.Id" class="btn btn-outline-primary">Show Details</a></td>
+            <td><a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-outline-success">Edit Details</a></td>
+        </tbody>
     }
 </table>

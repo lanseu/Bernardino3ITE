@@ -1,25 +1,28 @@
 ﻿@model IEnumerable<Instructor>;
+<center><h1>Instructor List</h1></center>
 
-<div>Instructor List</div>
+<a href="@Url.Action("AddInstructor")" class="btn btn-primary mb-3">Add Instructor</a>
 
-
-<table class="table table-dark">
+<table class="table table-hover">
 
     <tr>
-        <th colspan="6">Instructor</th>
+        <thead colspan="7"></thead>
     </tr>
 
     <tr>
+        <td>ID</td>
         <td>Name</td>
         <td>Tenured Status</td>
         <td>Hiring Date</td>
         <td>Rank</td>
         <td></td>
+        <td></td>
 
     </tr>
     @foreach (var Instructor in Model)
     {
-        <tr>
+         <tr class="table-group-divider">
+            <td>@Instructor.Id</td>
             <td>@Instructor.FirstName @Instructor.LastName</td>
             <td>@if(@Instructor.IsTenured == true)
                 {
@@ -32,8 +35,8 @@
             </td>
             <td>@Instructor.HiringDate</td>
             <td>@Instructor.Rank</td>
-            <td><a asp-action="ShowDetails" asp-route-id="@Instructor.Id">Show Details</a></td>
-
+            <td><a asp-action="ShowDetails" asp-route-id="@Instructor.Id" class="btn btn-outline-primary">Show Details</a></td>
+            <td><a asp-action="Edit" asp-route-id="@Instructor.Id" class="btn btn-outline-success">Edit Details</a></td>
         </tr>
     }
 </table>

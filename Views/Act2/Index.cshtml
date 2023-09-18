@@ -20,7 +20,7 @@
     </tr>
     @foreach (var Act2 in Model)
     {
-        <tr>
+         <tbody class="table-group-divider">
             <td>@Act2.FirstName </td>
             <td>@Act2.LastName</td>
             <td>
@@ -37,7 +37,7 @@
             <td>@Act2.Email</td>
             <td><a asp-action="ShowDetails" asp-route-id="@Act2.Id">Show Details</a></td>
 
-        </tr>
+        </tbody>
     }
 
 </table>

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\Instructor.cs" />
+    <Compile Remove="Views\Student\AddStudent.cs" />
   </ItemGroup>
 
   <ItemGroup>

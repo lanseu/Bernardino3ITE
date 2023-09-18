@@ -1,0 +1,35 @@
+﻿@model Student;
+
+<h1>Update Student Details</h1>
+<form action="AddStudent" method="post">
+    <div class="mb-3">
+        <label asp-for="Id" class="form-label">ID</label>
+        <input asp-for="Id" class="form-control readonly" readonly>
+    </div>
+    <div class="mb-3">
+        <label asp-for="LastName" class="form-label">Last Name</label>
+        <input asp-for="LastName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="FirstName" class="form-label">First Name</label>
+        <input asp-for="FirstName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Course" class="form-label">Course</label>
+        <select asp-for="Course" asp-items="Html.GetEnumSelectList(typeof(Course))" class="form-control"></select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AdmissionDate" class="form-label">Admission Date</label>
+        <input asp-for="AdmissionDate" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Email Address</label>
+        <input asp-for="Email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="GPA" class="form-label">GPA</label>
+        <input asp-for="GPA" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" onclick="history.back()" class="btn btn-primary">Cancel</button>
+</form>

@@ -38,5 +38,42 @@ namespace Bernardino3ITE.Controllers
             return NotFound();
         }
 
-    }
+        [HttpGet]
+        public IActionResult AddStudent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddStudent(Student newStudent)
+        {
+            StudentList.Add(newStudent);
+            return View("Index", StudentList);
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == id);
+
+            if (student != null)//was an student found?
+                return View(student);
+
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult Edit(Student studentChange)
+        {
+            Student? student = StudentList.FirstOrDefault(st => st.Id == studentChange.Id);
+
+            if (student != null)
+            {
+                student.LastName = studentChange.LastName;
+                student.FirstName = studentChange.FirstName;
+                student.Course = studentChange.Course;
+                student.AdmissionDate = studentChange.AdmissionDate;
+                student.Email = studentChange.Email;
+            }
+                return View("Index", StudentList);
+        }
+    }      
 }
