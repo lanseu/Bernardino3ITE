@@ -1,34 +1,35 @@
 ﻿@model Instructor;
 
-<h1>Update Instructor Details</h1>
-<form action="AddInstructor" method="post">
+<h1>Delete Details</h1>
+<h3>Are you sure you want to delete details?</h3>
+<form action="DeleteInstructor" method="post">
     <div class="mb-3">
         <label asp-for="Id" class="form-label">ID</label>
         <input asp-for="Id" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="LastName" class="form-label">Last Name</label>
-        <input asp-for="LastName" class="form-control">
+        <input asp-for="LastName" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="FirstName" class="form-label">First Name</label>
-        <input asp-for="FirstName" class="form-control">
+        <input asp-for="FirstName" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="HiringDate" class="form-label">Hiring Date</label>
-        <input asp-for="HiringDate" class="form-control">
+        <input asp-for="HiringDate" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="Rank" class="form-label">Rank</label>
-        <select asp-for="Rank" asp-items="Html.GetEnumSelectList(typeof(Rank))" class="form-control"></select>
+        <select asp-for="Rank" asp-items="Html.GetEnumSelectList(typeof(Rank))" class="form-control readonly" readonly></select>
     </div>
     <div class="mb-3">
         <label asp-for="IsTenured" class="form-label">Tenured Status</label>
-        <select asp-for="IsTenured" class="form-control">
+        <select asp-for="IsTenured" class="form-control readonly" readonly>
             <option value="true">Permanent</option>
             <option value="false">Probationary</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button type="button" onclick="history.back();" class="btn btn-primary">Cancel</button>
+    <button asp-action="deleteInstructor" type="submit" class="btn btn-outline-danger">Delete Instructor</button>
+    <button type="button" onclick="history.back()" class="btn btn-primary">Cancel</button>
 </form>

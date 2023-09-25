@@ -2,10 +2,11 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model Student;
+<center>
+    <h1>Student Details</h1>
+</center>
 
-<h1>Student Details</h1>
-
-<table class="table table-dark">
+<table class="table table-dark table-hover">
     <tr>
         <th>Id</th>
         <td>@Model.Id</td>
@@ -35,3 +36,4 @@
         <td>@Model.GPA</td>
     </tr>
 </table>
+<a href="@Url.Action("Index")" class="btn btn-primary mb-3">Back</a>

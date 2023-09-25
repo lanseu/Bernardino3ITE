@@ -1,35 +1,36 @@
 ﻿@model Student;
 
-<h1>Add new Student</h1>
-<form action="AddStudent" method="post">
+<h1>Delete Details</h1>
+<h3>Are you sure you want to delete details?</h3>
+<form action="DeleteStudent" method="post">
     <div class="mb-3">
         <label asp-for="Id" class="form-label">ID</label>
-        <input asp-for="Id" class="form-control">
+        <input asp-for="Id" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="LastName" class="form-label">Last Name</label>
-        <input asp-for="LastName" class="form-control">
+        <input asp-for="LastName" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="FirstName" class="form-label">First Name</label>
-        <input asp-for="FirstName" class="form-control">
+        <input asp-for="FirstName" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="Course" class="form-label">Course</label>
-        <select asp-for="Course" asp-items="Html.GetEnumSelectList(typeof(Course))" class="form-control"></select>
+        <select asp-for="Course" asp-items="Html.GetEnumSelectList(typeof(Course))" class="form-control readonly" readonly></select>
     </div>
     <div class="mb-3">
         <label asp-for="AdmissionDate" class="form-label">Admission Date</label>
-        <input asp-for="AdmissionDate" class="form-control">
+        <input asp-for="AdmissionDate" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="Email" class="form-label">Email Address</label>
-        <input asp-for="Email" class="form-control">
+        <input asp-for="Email" class="form-control readonly" readonly>
     </div>
     <div class="mb-3">
         <label asp-for="GPA" class="form-label">GPA</label>
-        <input asp-for="GPA" class="form-control">
+        <input asp-for="GPA" class="form-control readonly" readonly>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button asp-action="deleteStudent" type="submit" class="btn btn-outline-danger">Delete Student</button>
     <button type="button" onclick="history.back()" class="btn btn-primary">Cancel</button>
 </form>

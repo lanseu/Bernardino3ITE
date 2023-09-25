@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Student\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
 

@@ -18,6 +18,7 @@
         <td>GPA</td>
         <td>Details</td>
         <td></td>
+        <td></td>
 
 
     </tr>
@@ -31,6 +32,7 @@
             <td>@student.GPA</td>
             <td><a asp-action="ShowDetails" asp-route-id="@student.Id" class="btn btn-outline-primary">Show Details</a></td>
             <td><a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-outline-success">Edit Details</a></td>
+            <td><a asp-action="DeleteStudent" asp-route-id="@student.Id" class="btn btn-outline-danger">Delete Student</a></td>
         </tbody>
     }
 </table>

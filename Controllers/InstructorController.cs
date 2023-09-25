@@ -1,33 +1,30 @@
 ﻿using Bernardino3ITE.Models;
+using Bernardino3ITE.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bernardino3ITE.Controllers
 {
     public class InstructorController : Controller
     {
-        List<Instructor> InstructorList = new List<Instructor>
-            {
-                new Instructor()
-                {
-                    Id=1, FirstName ="Aria", LastName ="Stormrider", HiringDate = new DateTime(2020, 03, 20), IsTenured = true, Rank = Rank.Instructor
-                },
-                new Instructor()
-                {
-                    Id=2, FirstName ="John", LastName ="Smith", HiringDate = new DateTime(2021, 04, 30), IsTenured = false, Rank = Rank.AssociateProfessor
-                }
-            };
+        private readonly IMyFakeDataService _fakeData;
+
+        public InstructorController(IMyFakeDataService fakeData)
+        {
+            _fakeData = fakeData;
+        }
+
         public IActionResult Index()
         {
 
-            return View(InstructorList);
+            return View(_fakeData.InstructorList);
         }
 
         public IActionResult ShowDetails(int id)
         {
-            //Search for the student whose id matches the given id
-            Instructor? instructor = InstructorList.FirstOrDefault(st => st.Id == id);
+            
+            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
 
-            if (instructor != null)//was an student found?
+            if (instructor != null)
                 return View(instructor);
 
             return NotFound();
@@ -41,15 +38,15 @@ namespace Bernardino3ITE.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
-            InstructorList.Add(newInstructor);
-            return View("Index", InstructorList);
+            _fakeData.InstructorList.Add(newInstructor);
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Instructor? instructor = InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
 
-            if (instructor != null)//was an student found?
+            if (instructor != null)
                 return View(instructor);
 
             return NotFound();
@@ -57,7 +54,7 @@ namespace Bernardino3ITE.Controllers
         [HttpPost]
         public IActionResult Edit(Instructor instructorChange)
         {
-            Instructor? instructor = InstructorList.FirstOrDefault(st => st.Id == instructorChange.Id);
+            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == instructorChange.Id);
 
             if (instructor != null)
             {   
@@ -68,7 +65,28 @@ namespace Bernardino3ITE.Controllers
                 instructor.Rank = instructorChange.Rank;
                 instructor.HiringDate = instructorChange.HiringDate;
             }
-                return View("Index", InstructorList);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult DeleteInstructor(int id)
+        {
+            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            if (instructor != null)
+                return View(instructor);
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult deleteInstructor(int id)
+        {
+            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            if (instructor != null)
+            {
+                _fakeData.InstructorList.Remove(instructor);
+                return RedirectToAction("Index");
+            }
+            return NotFound();
         }
     }
     
